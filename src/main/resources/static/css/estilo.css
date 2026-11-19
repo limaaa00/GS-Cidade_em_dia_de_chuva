@@ -1,0 +1,8 @@
+body { font-family: Arial, sans-serif; margin: 20px; }
+nav { margin-bottom: 15px; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #999; padding: 4px 10px; text-align: left; }
+th { background: #eee; }
+.erro { color: #b00020; }
+.sucesso { color: #1b7f2a; }
+label { display: block; margin-top: 8px; }

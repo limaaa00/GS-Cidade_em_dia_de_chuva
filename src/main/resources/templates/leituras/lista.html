@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head th:replace="~{fragments/layout :: cabecalho('Leituras')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<h2>Leituras</h2>
+<div th:replace="~{fragments/layout :: mensagens}"></div>
+<p><a th:href="@{/leituras/novo}">Nova leitura</a></p>
+<table>
+    <thead>
+    <tr><th>Data e hora</th><th>Trecho</th><th>Lâmina (cm)</th><th>Status</th><th>Ações</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="l : ${leituras}">
+        <td th:text="${#temporals.format(l.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+        <td th:text="${l.trechoLogradouro}"></td>
+        <td th:text="${l.laminaAgua}"></td>
+        <td th:text="${l.situacao}"></td>
+        <td>
+            <a th:href="@{/leituras/{id}/editar(id=${l.id})}">Editar</a>
+            <form th:action="@{/leituras/{id}/excluir(id=${l.id})}" method="post" style="display:inline">
+                <button type="submit">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

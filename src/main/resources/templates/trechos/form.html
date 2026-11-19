@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head th:replace="~{fragments/layout :: cabecalho('Trecho')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<h2 th:text="${trecho.id == null} ? 'Novo trecho' : 'Alterar trecho'">Novo trecho</h2>
+<div th:replace="~{fragments/layout :: mensagens}"></div>
+<form th:action="${trecho.id == null} ? @{/trechos} : @{/trechos/{id}(id=${trecho.id})}"
+      th:object="${trecho}" method="post">
+    <label>Logradouro:
+        <input type="text" th:field="*{logradouro}">
+        <span class="erro" th:errors="*{logradouro}"></span>
+    </label>
+    <label>Bairro:
+        <select th:field="*{bairroId}">
+            <option value="">Selecione...</option>
+            <option th:each="b : ${bairros}" th:value="${b.id}" th:text="${b.nome}"></option>
+        </select>
+        <span class="erro" th:errors="*{bairroId}"></span>
+    </label>
+    <label>Tipo de calçada:
+        <select th:field="*{tipoCalcada}">
+            <option value="">Selecione...</option>
+            <option th:each="t : ${tipos}" th:value="${t}" th:text="${t}"></option>
+        </select>
+        <span class="erro" th:errors="*{tipoCalcada}"></span>
+    </label>
+    <label>Altitude (m):
+        <input type="number" step="any" th:field="*{altitude}">
+        <span class="erro" th:errors="*{altitude}"></span>
+    </label>
+    <p>
+        <button type="submit">Salvar</button>
+        <a th:href="@{/trechos}">Cancelar</a>
+    </p>
+</form>
+</body>
+</html>

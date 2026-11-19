@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head th:replace="~{fragments/layout :: cabecalho('Bairro')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<h2 th:text="${bairro.id == null} ? 'Novo bairro' : 'Alterar bairro'">Novo bairro</h2>
+<div th:replace="~{fragments/layout :: mensagens}"></div>
+<form th:action="${bairro.id == null} ? @{/bairros} : @{/bairros/{id}(id=${bairro.id})}"
+      th:object="${bairro}" method="post">
+    <label>Nome:
+        <input type="text" th:field="*{nome}">
+        <span class="erro" th:errors="*{nome}"></span>
+    </label>
+    <label>Zona:
+        <select th:field="*{zona}">
+            <option value="">Selecione...</option>
+            <option th:each="z : ${zonas}" th:value="${z}" th:text="${z}"></option>
+        </select>
+        <span class="erro" th:errors="*{zona}"></span>
+    </label>
+    <label>População:
+        <input type="number" th:field="*{populacao}">
+        <span class="erro" th:errors="*{populacao}"></span>
+    </label>
+    <p>
+        <button type="submit">Salvar</button>
+        <a th:href="@{/bairros}">Cancelar</a>
+    </p>
+</form>
+</body>
+</html>

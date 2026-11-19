@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head th:fragment="cabecalho(titulo)">
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Título</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<nav th:fragment="menu">
+    <a th:href="@{/}">Início</a> |
+    <a th:href="@{/bairros}">Bairros</a> |
+    <a th:href="@{/trechos}">Trechos</a> |
+    <a th:href="@{/leituras}">Leituras</a>
+</nav>
+<div th:fragment="mensagens">
+    <p class="sucesso" th:if="${sucesso}" th:text="${sucesso}"></p>
+    <p class="erro" th:if="${erro}" th:text="${erro}"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head th:replace="~{fragments/layout :: cabecalho('Leitura')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: menu}"></nav>
+<h2 th:text="${leitura.id == null} ? 'Nova leitura' : 'Alterar leitura'">Nova leitura</h2>
+<div th:replace="~{fragments/layout :: mensagens}"></div>
+<form th:action="${leitura.id == null} ? @{/leituras} : @{/leituras/{id}(id=${leitura.id})}"
+      th:object="${leitura}" method="post">
+    <label>Trecho:
+        <select th:field="*{trechoId}">
+            <option value="">Selecione...</option>
+            <option th:each="t : ${trechos}" th:value="${t.id}" th:text="${t.logradouro}"></option>
+        </select>
+        <span class="erro" th:errors="*{trechoId}"></span>
+    </label>
+    <label>Data e hora:
+        <input type="text" th:field="*{dataHora}" placeholder="dd/MM/yyyy HH:mm">
+        <span class="erro" th:errors="*{dataHora}"></span>
+    </label>
+    <label>Lâmina (cm):
+        <input type="number" step="any" th:field="*{laminaAgua}">
+        <span class="erro" th:errors="*{laminaAgua}"></span>
+    </label>
+    <p>
+        <button type="submit">Salvar</button>
+        <a th:href="@{/leituras}">Cancelar</a>
+    </p>
+</form>
+</body>
+</html>
