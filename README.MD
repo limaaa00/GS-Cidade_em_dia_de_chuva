@@ -1,6 +1,6 @@
 # Cidade em Dia de Chuva
 
-**Aluno:** Lucas [SOBRENOME]
+**Aluno:** Lucas Lima Franco
 **RM:** 550255
 
 ## Parâmetros
